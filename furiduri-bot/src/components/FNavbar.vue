@@ -1,35 +1,27 @@
 <template>
-    <b-navbar>
+    <b-navbar class="mb-3">
         <template #brand>
-            <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                Furiduri bot
+            <b-navbar-item tag="router-link" :to="{ name: 'home' }">
+                <h1 class="title">
+                    Furiduri bot                
+                </h1> 
             </b-navbar-item>
         </template>
         <template #start>
-            <b-navbar-item href="#">
+            <b-navbar-item tag="router-link" :to="{ name: 'home' }">
                 Home
             </b-navbar-item>
-            <b-navbar-item href="#">
-                Documentation
-            </b-navbar-item>
-            <b-navbar-dropdown label="Info">
-                <b-navbar-item href="#">
+            <b-navbar-item  tag="router-link" :to="{ name: 'about' }">
                     About
-                </b-navbar-item>
-                <b-navbar-item href="#">
-                    Contact
-                </b-navbar-item>
-            </b-navbar-dropdown>
+            </b-navbar-item>
         </template>
 
         <template #end>
             <b-navbar-item tag="div">
                 <div class="buttons">
-                    <a class="button is-primary">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                        Log in
+                    <a class="button is-is-primary" 
+                    @click="googleSignOut">
+                        Cerrar sesion
                     </a>
                 </div>
             </b-navbar-item>
@@ -37,8 +29,27 @@
     </b-navbar>
 </template>
 <script>
+import firebase from 'firebase/app'
+require('firebase/auth')
 export default {
-    name: "FNavbar"
+    name: "FNavbar",
+    data(){
+        return {
+            
+        }
+    },
+    methods: {
+        googleSignOut: function() {
+            firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                alert("Successfully signed out.");
+                this.$router.replace({ name: "login" });
+                this.$store.commit('onClientDisconnect');
+                });
+        }
+    }
 }
 </script>
 

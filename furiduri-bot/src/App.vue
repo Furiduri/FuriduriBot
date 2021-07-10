@@ -1,31 +1,21 @@
 <template>
   <div id="app">
-    <FNavbar />
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <FNavbar/>
+    <div class="main container">
+      <router-view/>  
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import FNavbar from './components/FNavbar.vue'
-
+import FNavbar from './components/FNavbar.vue';
 export default {
-  name: 'App',
+  name: "app",
   components: {
-    HelloWorld,
     FNavbar
-  }
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
